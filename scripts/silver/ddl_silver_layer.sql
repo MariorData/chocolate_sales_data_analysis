@@ -10,7 +10,7 @@ Script Purpose:
 */
 
 
-IF OBJECT_ID('silver.customer', 'U') IS NOT NULL
+IF OBJECT_ID('silver.customer_info', 'U') IS NOT NULL
     DROP TABLE silver.customer_info;
 GO
 
