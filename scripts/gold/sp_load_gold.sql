@@ -14,11 +14,11 @@ Parameters:
 	  This stored procedure does not accept any parameters or return any values.
 
 Usage Example:
-    EXEC Gold.load_silver_tbs;
+    EXEC Gold.load_gold_tbs;
 ===============================================================================
 */
 
-CREATE OR ALTER   PROCEDURE gold.load_silver_tbs AS
+CREATE OR ALTER   PROCEDURE gold.load_gold_tbs AS
 BEGIN
     DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @batch_end_time DATETIME; 
     BEGIN TRY
@@ -177,6 +177,49 @@ BEGIN
 			) st
 			ON		sls.store_id=st.store_id;
 	    SET @end_time = GETDATE();
+        PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
+        PRINT '>> -------------';
+
+		-- Loading gold.dim_date
+        SET @start_time = GETDATE();
+		PRINT '>> Truncating Table: gold.dim_date';
+		TRUNCATE TABLE gold.dim_date;
+		PRINT '>> Inserting Data Into: gold.dim_date';
+			DECLARE @StartDated DATE = DATEADD(yy, DATEDIFF(yy, 0, (SELECT MIN(order_date) FROM silver.sales_detail)), 0);
+			DECLARE @EndDated DATE = DATEADD(yy, DATEDIFF(yy, 0, (SELECT Max(order_date) FROM silver.sales_detail)) + 1, -1);
+			WITH DateSequence AS (
+			SELECT @StartDated AS CurrentDate
+			UNION ALL
+			SELECT DATEADD(DAY, 1, CurrentDate)
+			FROM DateSequence
+			WHERE CurrentDate < @EndDated
+			)
+			INSERT INTO gold.dim_date( 
+			FullDate, 
+			DayOfMonth, 
+			DayName, 
+			DayOfWeek, 
+			WeekOfYear, 
+			Month, 
+			MonthName, 
+			Quarter, 
+			Year, 
+			IsWeekend
+			)
+			SELECT
+			CurrentDate AS FullDate,
+			DAY(CurrentDate) AS DayOfMonth,
+			DATENAME(WEEKDAY, CurrentDate) AS DayName,
+			DATEPART(WEEKDAY, CurrentDate) AS DayOfWeek,
+			DATEPART(WEEK, CurrentDate) AS WeekOfYear,
+			MONTH(CurrentDate) AS Month,
+			DATENAME(MONTH, CurrentDate) AS MonthName,
+			DATEPART(QUARTER, CurrentDate) AS Quarter,
+			YEAR(CurrentDate) AS Year,
+			CASE WHEN DATEPART(WEEKDAY, CurrentDate) IN (1, 7) THEN 1 ELSE 0 END AS IsWeekend
+			FROM DateSequence
+			OPTION (MAXRECURSION 0);
+        SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
         PRINT '>> -------------';
 
