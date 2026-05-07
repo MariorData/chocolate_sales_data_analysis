@@ -74,3 +74,22 @@ CREATE TABLE gold.fact_sales (
     profit                  DECIMAL(11,3)   
 );
 GO
+	
+IF OBJECT_ID('gold.dim_date', 'U') IS NOT NULL
+    DROP TABLE gold.dim_date;
+GO
+
+CREATE TABLE gold.dim_date (
+	FullDate 				DATE NOT NULL,
+	DayOfMonth 				TINYINT,
+	DayName 				NVARCHAR(20),
+	DayOfWeek 				TINYINT,
+	WeekOfYear 				TINYINT,
+	Month 					TINYINT,
+	MonthName 				NVARCHAR(20),
+	Quarter 				TINYINT,
+	Year 					INT,
+	IsWeekend 				BIT
+);
+
+GO
