@@ -30,7 +30,12 @@ Welcome to the **Data Warehouse and Exploratory Data Analysis (EDA) Project** re
 
 ## Dashboard
 
+  <img width="1337" height="720" alt="image" src="https://github.com/user-attachments/assets/6031a4ba-726e-4333-b038-9d4471a3512a" />
+
+
     https://github.com/MariorData/chocolate_sales_data_analysis/tree/ff0407707fd2b52577d665961369d50523f69570/dashboard
+
+    
  
 
  
