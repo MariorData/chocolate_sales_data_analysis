@@ -11,5 +11,7 @@ Welcome to the **Data Warehouse and Exploratory Data Analysis (EDA) Project** re
 
  ## Datasets
 
- datasets
+ https://github.com/MariorData/chocolate_sales_data_analysis/tree/27e9756f2cf8371b5f212a3de8e0bd6db543f81e/datasets
+
+
  
