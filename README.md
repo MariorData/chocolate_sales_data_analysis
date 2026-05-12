@@ -1,3 +1,3 @@
- # 📊 Chocolate Sales Data Warehouse and Exploratory Data Analysis Project
+ # 📊 Data Warehouse and Exploratory Data Analysis (EDA) Project
 
-Welcome to the **Chocolate Sales Data Warehouse and Exploratory Data Analysis Project** repository! 🚀
+Welcome to the **Data Warehouse and Exploratory Data Analysis (EDA) Project** repository! 🚀
