@@ -1,5 +1,5 @@
  # 📊 Data Warehouse and Exploratory Data Analysis (EDA) Project
 
- # Overview
+ ## Overview
 
 Welcome to the **Data Warehouse and Exploratory Data Analysis (EDA) Project** repository! 🚀
