@@ -5,6 +5,11 @@ Welcome to the **Data Warehouse and Exploratory Data Analysis (EDA) Project** re
  ## Overview
 
  This project focuses on:
-  - Creating a modern Data Warehouse based on Medallion Architecture (Bronze, Silver, and Gold layers).
+  - Creating a modern Data Warehouse based on Medallion Architecture (Bronze, Silver and Gold layers).
   - Exploratory Data Analysis (EDA) using SQL to extract key business metrics from the Gold layer.
-  - Dashboard creation using Power Bi Desktop.
+  - Designing a Dashboard using Power Bi Desktop.
+
+ ## Datasets
+
+ datasets
+ 
